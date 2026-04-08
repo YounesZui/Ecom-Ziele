@@ -133,37 +133,37 @@ function renderSummary() {
   const projection = getRunRateProjection();
 
   const cards = [
-    {
-      label: "Gesamtumsatz vs. Ziel",
-      value: formatCurrency(totalActual),
-      sub: `von ${formatCurrency(totalGoal)}`,
-      progress: Math.min(overallPct, 100),
-      metaLeft: "Zielerreichung",
-      metaLeftValue: formatPercent(overallPct),
-      metaRight: "Delta",
-      metaRightValue: formatCurrency(totalActual - totalGoal)
-    },
-    {
-      label: "Aktueller Bonus",
-      value: formatCurrency(bonus),
-      sub: "gemäß Staffelung",
-      progress: Math.min(overallPct, 120) / 1.2,
-      metaLeft: "Bonusstufe",
-      metaLeftValue: getBonusStepLabel(overallPct),
-      metaRight: "Webshop Extra",
-      metaRightValue: getChannelTotal("zuitable") > SALES_GOALS_CONFIG.webshopExtraBonus.threshold ? "Aktiv" : "Offen"
-    },
-    {
-      label: "Hochrechnung",
-      value: formatCurrency(projection),
-      sub: "Run-Rate auf Jahresbasis",
-      progress: Math.min((projection / totalGoal) * 100, 100),
-      metaLeft: "gegen Ziel",
-      metaLeftValue: formatPercent((projection / totalGoal) * 100),
-      metaRight: "Forecast Delta",
-      metaRightValue: formatCurrency(projection - totalGoal)
-    }
-  ];
+  {
+    label: "Gesamtumsatz vs. Jahresziel",
+    value: formatCurrency(totalActual),
+    sub: `Ist-Umsatz von ${formatCurrency(totalGoal)}`,
+    progress: Math.min(overallPct, 100),
+    metaLeft: "Zielerreichung",
+    metaLeftValue: formatPercent(overallPct),
+    metaRight: "Gap zum Ziel",
+    metaRightValue: formatCurrency(totalActual - totalGoal)
+  },
+  {
+    label: "Aktueller Bonusanspruch",
+    value: formatCurrency(bonus),
+    sub: "basierend auf aktueller Zielerreichung",
+    progress: Math.min(overallPct, 120) / 1.2,
+    metaLeft: "Aktive Bonusstufe",
+    metaLeftValue: getBonusStepLabel(overallPct),
+    metaRight: "Webshop Extra",
+    metaRightValue: getChannelTotal("zuitable") > SALES_GOALS_CONFIG.webshopExtraBonus.threshold ? "Aktiv" : "Noch offen"
+  },
+  {
+    label: "Jahreshochrechnung",
+    value: formatCurrency(projection),
+    sub: "Forecast auf Basis aktueller Run-Rate",
+    progress: Math.min((projection / totalGoal) * 100, 100),
+    metaLeft: "Forecast vs. Ziel",
+    metaLeftValue: formatPercent((projection / totalGoal) * 100),
+    metaRight: "Forecast Delta",
+    metaRightValue: formatCurrency(projection - totalGoal)
+  }
+];
 
   container.innerHTML = cards.map(card => `
     <div class="goal-card">
