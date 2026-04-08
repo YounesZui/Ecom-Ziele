@@ -3,70 +3,87 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Umsatzziele Dashboard · Zuitable</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <title>Umsatzziele 2026 · Zuitable</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="goals-dashboard">
+<body>
 
-  <div class="top-bar">Zieltracking · Umsatzziele 2026</div>
+  <div class="top-bar">
+    <span class="top-bar-brand">ZUITABLE</span>
+    <span class="top-bar-title">Umsatzziele 2026</span>
+    <span id="last-updated" class="top-bar-ts">–</span>
+  </div>
 
-  <header class="page-header goals-header">
-    <div class="header-left">
-      <div class="agency-label">Zuitable Performance Steering</div>
-      <h1>Umsatz<span>ziele</span></h1>
-      <p class="goals-header-copy">
-        Behalte Zielerreichung, Bonusstaffel und Monatsentwicklung über alle relevanten Vertriebskanäle zentral im Blick.
-      </p>
-    </div>
-
-    <div class="header-right goals-header-side">
-      <div class="header-stat-card">
-        <span class="header-stat-label">Jahresziel gesamt</span>
-        <span class="header-stat-value">1.850.000 €</span>
+  <header class="page-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="header-kicker">Performance Steering · 2026</div>
+        <h1>Ziel<span>tracking</span></h1>
+        <p class="header-sub">Gesamtüberblick über Zielerreichung, Bonus und Kanalperformance</p>
       </div>
-      <div id="last-updated" class="last-updated">–</div>
+      <div class="header-right">
+        <div class="header-stat">
+          <span class="header-stat-label">Jahresziel gesamt</span>
+          <span class="header-stat-value" id="header-goal-value">1.850.000 €</span>
+        </div>
+        <div class="header-stat accent">
+          <span class="header-stat-label">Aktueller Bonus</span>
+          <span class="header-stat-value" id="header-bonus-value">–</span>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="wrapper">
+
+    <!-- 1. HERO: Zielfortschritt -->
     <section class="section-block">
       <div class="section-title">
-        <span class="section-icon">▲</span> Executive Summary
+        <span class="section-icon">①</span> Zielfortschritt
       </div>
-      <div class="goal-summary-grid" id="goal-summary-grid"></div>
+      <div class="progress-hero" id="progress-hero"></div>
     </section>
 
+    <!-- 2. KPIs -->
     <section class="section-block">
       <div class="section-title">
-        <span class="section-icon">▲</span> Zielerreichung je Kanal
+        <span class="section-icon">②</span> Executive Summary
+      </div>
+      <div class="kpi-grid" id="goal-summary-grid"></div>
+    </section>
+
+    <!-- 3. Kanäle -->
+    <section class="section-block">
+      <div class="section-title">
+        <span class="section-icon">③</span> Zielerreichung je Kanal
       </div>
       <div class="targets-grid" id="targets-grid"></div>
     </section>
 
+    <!-- 4. Datenpflege -->
     <section class="section-block">
       <div class="section-title">
-        <span class="section-icon">▲</span> Monatswerte pflegen
+        <span class="section-icon">④</span> Monatswerte pflegen
       </div>
 
-      <div class="entry-panel goals-entry-panel">
+      <div class="entry-panel">
         <div class="entry-header" onclick="toggleEntryPanel()">
-          <h2>
-            Monatsumsätze bearbeiten
-            <span class="sub">Pflegebasis für Zieltracking und Bonusfortschritt</span>
-          </h2>
-          <div class="entry-toggle open" id="entry-toggle">▼</div>
+          <div class="entry-header-text">
+            <h2>Monatsumsätze bearbeiten</h2>
+            <span class="entry-header-sub">Pflegebasis für Zieltracking und Bonusfortschritt</span>
+          </div>
+          <div class="entry-toggle" id="entry-toggle">▼</div>
         </div>
 
         <div class="entry-body open" id="entry-body">
           <div class="month-switch" id="month-switch"></div>
           <div class="goal-entry-grid" id="goal-entry-grid"></div>
 
-          <div class="entry-actions goals-actions">
-            <button class="btn btn-primary" onclick="saveMonthData()">Monatswerte speichern</button>
+          <div class="entry-actions">
+            <button class="btn btn-primary" onclick="saveMonthData()">Speichern</button>
             <button class="btn btn-ghost" onclick="resetSelectedMonth()">Monat zurücksetzen</button>
             <button class="btn btn-ghost" onclick="openExportBox()">Export anzeigen</button>
           </div>
@@ -75,46 +92,43 @@
             <div class="export-label">Export für umsatzziele-data.js</div>
             <pre id="export-output"></pre>
             <div class="export-actions">
-              <button class="btn btn-primary" onclick="copyExport()">Export kopieren</button>
+              <button class="btn btn-primary" onclick="copyExport()">Kopieren</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- 5. Bonus -->
     <section class="section-block">
       <div class="section-title">
-        <span class="section-icon">▲</span> Bonusstaffelung
+        <span class="section-icon">⑤</span> Bonusstaffelung
       </div>
 
       <div class="bonus-layout">
-        <div class="bonus-table-wrap history-card">
-          <div class="history-scroll">
-            <table>
-              <thead>
-                <tr>
-                  <th>Zielerreichung</th>
-                  <th>Bonus</th>
-                </tr>
-              </thead>
-              <tbody id="bonus-table-body"></tbody>
-            </table>
-          </div>
+        <div class="bonus-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Zielerreichung</th>
+                <th>Bonus</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="bonus-table-body"></tbody>
+          </table>
         </div>
 
         <aside class="bonus-info-card">
           <div class="bonus-info-kicker">Zusatzregel</div>
-          <h3>Webshop-Extra</h3>
-          <p>
-            Sobald <strong>Zuitable.com</strong> mehr als <strong>800.000 €</strong> Jahresumsatz erreicht,
-            werden zusätzlich <strong>2.000 €</strong> Bonus aktiviert.
-          </p>
-          <div class="bonus-info-note">
-            Die Bonuslogik orientiert sich an deiner hinterlegten Staffelung für 2026.
-          </div>
+          <h3>Webshop-Extrabonus</h3>
+          <p>Sobald <strong>Zuitable.com</strong> mehr als <strong>800.000 €</strong> Jahresumsatz erzielt,
+          werden zusätzlich <strong>2.000 €</strong> Bonus aktiviert.</p>
+          <div class="bonus-webshop-progress" id="bonus-webshop-progress"></div>
         </aside>
       </div>
     </section>
+
   </main>
 
   <div class="toast" id="toast"></div>
