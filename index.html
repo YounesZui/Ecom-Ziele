@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <link rel="stylesheet" href="style.css"/>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Umsatzziele Dashboard · Zuitable</title>
@@ -10,287 +9,117 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
-  <style>
-    .goal-summary-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:1px;
-      background:var(--border);
-      border:1px solid var(--border);
-      margin-bottom:2rem;
-    }
-    .goal-card{
-      background:#fff;
-      padding:1.4rem;
-    }
-    .goal-bar-wrap{
-      margin-top:.8rem;
-      background:#f2f2f2;
-      height:10px;
-      border-radius:999px;
-      overflow:hidden;
-    }
-    .goal-bar{
-      height:100%;
-      background:var(--orange);
-      border-radius:999px;
-      width:0%;
-    }
-    .goal-mini{
-      display:flex;
-      justify-content:space-between;
-      gap:1rem;
-      margin-top:.55rem;
-      font-size:.75rem;
-      color:var(--text-muted);
-    }
-    .targets-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:1px;
-      background:var(--border);
-      border:1px solid var(--border);
-      margin-bottom:3rem;
-    }
-    .target-card{
-      background:#fff;
-      padding:1.4rem;
-    }
-    .target-head{
-      display:flex;
-      justify-content:space-between;
-      gap:1rem;
-      align-items:flex-start;
-      margin-bottom:.8rem;
-    }
-    .target-title{
-      font-family:var(--font-display);
-      font-size:.7rem;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-weight:700;
-    }
-    .target-status{
-      font-family:var(--font-display);
-      font-size:.62rem;
-      padding:.2rem .45rem;
-      border-radius:2px;
-      background:var(--gray-faint);
-      color:var(--text-muted);
-      white-space:nowrap;
-    }
-    .target-status.good{
-      background:var(--up-bg);
-      color:var(--up);
-    }
-    .target-status.bad{
-      background:var(--down-bg);
-      color:var(--down);
-    }
-    .target-value{
-      font-family:var(--font-display);
-      font-size:1.7rem;
-      font-weight:800;
-      line-height:1;
-    }
-    .target-sub{
-      color:var(--text-muted);
-      font-size:.75rem;
-      margin-top:.45rem;
-    }
-    .target-progress{
-      margin-top:.9rem;
-      background:#f2f2f2;
-      height:10px;
-      border-radius:999px;
-      overflow:hidden;
-    }
-    .target-progress > span{
-      display:block;
-      height:100%;
-      background:var(--orange);
-      width:0%;
-      border-radius:999px;
-    }
-    .target-meta{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:.6rem;
-      margin-top:.9rem;
-    }
-    .target-meta-box{
-      background:var(--bg-card-alt);
-      border:1px solid var(--border);
-      padding:.7rem .8rem;
-    }
-    .target-meta-label{
-      display:block;
-      font-size:.6rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:var(--text-faint);
-      margin-bottom:.2rem;
-      font-family:var(--font-display);
-    }
-    .target-meta-value{
-      font-weight:700;
-      color:var(--text);
-      font-size:.84rem;
-    }
-    .goal-entry-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:1rem;
-      margin-bottom:1rem;
-    }
-    .bonus-table-wrap{
-      border:1px solid var(--border);
-      overflow:hidden;
-      margin-bottom:3rem;
-    }
-    .bonus-note{
-      font-size:.78rem;
-      color:var(--text-muted);
-      margin-top:.8rem;
-      line-height:1.5;
-    }
-    .month-switch{
-      display:flex;
-      flex-wrap:wrap;
-      gap:.55rem;
-      margin-bottom:1rem;
-    }
-    .month-btn{
-      padding:.55rem .9rem;
-      border:1px solid var(--border);
-      background:#fff;
-      cursor:pointer;
-      font-family:var(--font-display);
-      font-size:.64rem;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-weight:700;
-      color:var(--text-muted);
-    }
-    .month-btn.active{
-      color:var(--orange);
-      border-color:var(--orange);
-      background:var(--orange-dim);
-    }
-    .export-actions{
-      display:flex;
-      gap:.6rem;
-      flex-wrap:wrap;
-      margin-top:.9rem;
-    }
-    .big-focus{
-      font-family:var(--font-display);
-      font-size:2.4rem;
-      font-weight:800;
-      line-height:1;
-      letter-spacing:-.03em;
-    }
-  </style>
 </head>
-<body>
+<body class="goals-dashboard">
 
-<div class="top-bar">Zieltracking · Umsatzziele 2026</div>
+  <div class="top-bar">Zieltracking · Umsatzziele 2026</div>
 
-<header class="page-header">
-  <div class="header-left">
-    <div class="agency-label">Performance Steering</div>
-    <h1>Umsatz<span>ziele</span></h1>
-  </div>
-  <div class="header-right">
-    <div id="last-updated" class="last-updated">–</div>
-  </div>
-</header>
-
-<div class="page-nav-bar">
-  <div class="page-nav-inner">
-    <a href="index.html" class="page-nav-btn">Online Shop</a>
-    <a href="pos.html" class="page-nav-btn">POS</a>
-    <a href="otto.html" class="page-nav-btn">Otto</a>
-    <a href="umsatzziele.html" class="page-nav-btn active">Umsatzziele</a>
-  </div>
-</div>
-
-<div class="wrapper">
-
-  <div class="section-title">
-    <span class="section-icon">▲</span> Executive Summary
-  </div>
-
-  <div class="goal-summary-grid" id="goal-summary-grid"></div>
-
-  <div class="section-title">
-    <span class="section-icon">▲</span> Zielerreichung je Kanal
-  </div>
-
-  <div class="targets-grid" id="targets-grid"></div>
-
-  <div class="section-title">
-    <span class="section-icon">▲</span> Monatswerte pflegen
-  </div>
-
-  <div class="entry-panel">
-    <div class="entry-header" onclick="toggleEntryPanel()">
-      <h2>
-        Monatsumsätze bearbeiten
-        <span class="sub">Pflegebasis für Zieltracking und Bonusfortschritt</span>
-      </h2>
-      <div class="entry-toggle open" id="entry-toggle">▼</div>
+  <header class="page-header goals-header">
+    <div class="header-left">
+      <div class="agency-label">Zuitable Performance Steering</div>
+      <h1>Umsatz<span>ziele</span></h1>
+      <p class="goals-header-copy">
+        Behalte Zielerreichung, Bonusstaffel und Monatsentwicklung über alle relevanten Vertriebskanäle zentral im Blick.
+      </p>
     </div>
 
-    <div class="entry-body open" id="entry-body">
-      <div class="month-switch" id="month-switch"></div>
+    <div class="header-right goals-header-side">
+      <div class="header-stat-card">
+        <span class="header-stat-label">Jahresziel gesamt</span>
+        <span class="header-stat-value">1.850.000 €</span>
+      </div>
+      <div id="last-updated" class="last-updated">–</div>
+    </div>
+  </header>
 
-      <div class="goal-entry-grid" id="goal-entry-grid"></div>
+  <main class="wrapper">
+    <section class="section-block">
+      <div class="section-title">
+        <span class="section-icon">▲</span> Executive Summary
+      </div>
+      <div class="goal-summary-grid" id="goal-summary-grid"></div>
+    </section>
 
-      <div class="entry-actions">
-        <button class="btn btn-primary" onclick="saveMonthData()">Monatswerte speichern</button>
-        <button class="btn btn-ghost" onclick="resetSelectedMonth()">Monat zurücksetzen</button>
-        <button class="btn btn-ghost" onclick="openExportBox()">Export anzeigen</button>
+    <section class="section-block">
+      <div class="section-title">
+        <span class="section-icon">▲</span> Zielerreichung je Kanal
+      </div>
+      <div class="targets-grid" id="targets-grid"></div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">
+        <span class="section-icon">▲</span> Monatswerte pflegen
       </div>
 
-      <div class="export-box" id="export-box">
-        <div class="export-label">Export für umsatzziele-data.js</div>
-        <pre id="export-output"></pre>
-        <div class="export-actions">
-          <button class="btn btn-primary" onclick="copyExport()">Export kopieren</button>
+      <div class="entry-panel goals-entry-panel">
+        <div class="entry-header" onclick="toggleEntryPanel()">
+          <h2>
+            Monatsumsätze bearbeiten
+            <span class="sub">Pflegebasis für Zieltracking und Bonusfortschritt</span>
+          </h2>
+          <div class="entry-toggle open" id="entry-toggle">▼</div>
+        </div>
+
+        <div class="entry-body open" id="entry-body">
+          <div class="month-switch" id="month-switch"></div>
+          <div class="goal-entry-grid" id="goal-entry-grid"></div>
+
+          <div class="entry-actions goals-actions">
+            <button class="btn btn-primary" onclick="saveMonthData()">Monatswerte speichern</button>
+            <button class="btn btn-ghost" onclick="resetSelectedMonth()">Monat zurücksetzen</button>
+            <button class="btn btn-ghost" onclick="openExportBox()">Export anzeigen</button>
+          </div>
+
+          <div class="export-box" id="export-box">
+            <div class="export-label">Export für umsatzziele-data.js</div>
+            <pre id="export-output"></pre>
+            <div class="export-actions">
+              <button class="btn btn-primary" onclick="copyExport()">Export kopieren</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="section-title">
-    <span class="section-icon">▲</span> Bonusstaffelung
-  </div>
+    <section class="section-block">
+      <div class="section-title">
+        <span class="section-icon">▲</span> Bonusstaffelung
+      </div>
 
-  <div class="bonus-table-wrap history-card">
-    <div class="history-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Zielerreichung</th>
-            <th>Bonus</th>
-          </tr>
-        </thead>
-        <tbody id="bonus-table-body"></tbody>
-      </table>
-    </div>
-  </div>
+      <div class="bonus-layout">
+        <div class="bonus-table-wrap history-card">
+          <div class="history-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Zielerreichung</th>
+                  <th>Bonus</th>
+                </tr>
+              </thead>
+              <tbody id="bonus-table-body"></tbody>
+            </table>
+          </div>
+        </div>
 
-  <div class="bonus-note">
-    Separater Bonus: Sobald <strong>Zuitable.com</strong> über <strong>800.000 €</strong> Jahresumsatz erreicht, kommen zusätzlich
-    <strong>2.000 €</strong> oben drauf.
-  </div>
+        <aside class="bonus-info-card">
+          <div class="bonus-info-kicker">Zusatzregel</div>
+          <h3>Webshop-Extra</h3>
+          <p>
+            Sobald <strong>Zuitable.com</strong> mehr als <strong>800.000 €</strong> Jahresumsatz erreicht,
+            werden zusätzlich <strong>2.000 €</strong> Bonus aktiviert.
+          </p>
+          <div class="bonus-info-note">
+            Die Bonuslogik orientiert sich an deiner hinterlegten Staffelung für 2026.
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
 
-</div>
+  <div class="toast" id="toast"></div>
 
-<div class="toast" id="toast"></div>
-
-<script src="umsatzziele-data.js"></script>
-<script src="umsatzziele-app.js"></script>
+  <script src="umsatzziele-data.js"></script>
+  <script src="umsatzziele-app.js"></script>
 </body>
 </html>
