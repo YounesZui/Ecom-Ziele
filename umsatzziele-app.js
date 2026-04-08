@@ -8,7 +8,6 @@ const STORAGE_KEY = `sales-goals-${SALES_GOALS_CONFIG.year}`;
 let selectedMonth = `${SALES_GOALS_CONFIG.year}-${String(new Date().getMonth() + 1).padStart(2,"0")}`;
 
 document.addEventListener("DOMContentLoaded", () => {
-  hydrateFromStorage();
   ensureAllMonthsExist();
   if (!SALES_GOALS_DATA[selectedMonth]) selectedMonth = `${SALES_GOALS_CONFIG.year}-01`;
   renderAll();
