@@ -57,7 +57,7 @@ const SALES_GOALS_DATA = {
     aboutyou: 0
   },
   "2026-03": {
-    zuitable: 0,
+    zuitable: 47778.68,
     zalando_zfs: 86036.53,
     zalando_cr: 0,
     otto: 3152.86,
