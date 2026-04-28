@@ -80,7 +80,7 @@ const SALES_GOALS_DATA = {
     manor: 0,
     galaxus: 0,
     secret_sales: 0,
-    aboutyou: 0
+    aboutyou: 1632.90
   },
   "2026-05": {
     zuitable: 0,
