@@ -32,7 +32,7 @@ const SALES_GOALS_CONFIG = {
 const SALES_GOALS_DATA = {
   "2026-01": {
     zuitable: 24953.45,
-    zalando_zfs: 73502.94,
+    zalando_zfs: 14328.35,
     zalando_cr: 0,
     otto: 0,
     vangraaf: 4348,
@@ -45,7 +45,7 @@ const SALES_GOALS_DATA = {
   },
   "2026-02": {
     zuitable: 23620.19,
-    zalando_zfs: 61407.26,
+    zalando_zfs: 25368.00,
     zalando_cr: 0,
     otto: 0,
     vangraaf: 3090,
@@ -58,7 +58,7 @@ const SALES_GOALS_DATA = {
   },
   "2026-03": {
     zuitable: 47778.68,
-    zalando_zfs: 86036.53,
+    zalando_zfs: 34390.88,
     zalando_cr: 0,
     otto: 3152.86,
     vangraaf: 4110,
