@@ -70,10 +70,10 @@ const SALES_GOALS_DATA = {
     aboutyou: 0
   },
   "2026-04": {
-    zuitable: 0,
+    zuitable: 49998.88,
     zalando_zfs: 0,
     zalando_cr: 0,
-    otto: 579.20,
+    otto: 1617.77,
     vangraaf: 0,
     amazon: 0,
     breuninger: 0,
